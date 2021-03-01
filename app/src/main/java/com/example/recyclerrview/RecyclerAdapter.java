@@ -36,6 +36,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         holder.name.setText(data.get(position).getName());
         holder.branch.setText(data.get(position).getBranch());
+        holder.imageView.setImageResource(data.get(position).getImage());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +46,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
                 intent.putExtra("name",temp.getName());
                 intent.putExtra("branch",temp.getBranch());
+                intent.putExtra("image",temp.getImage());
                 v.getContext().startActivity(intent);
 
             }
