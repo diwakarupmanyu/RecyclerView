@@ -4,6 +4,7 @@ public class Model {
 
     private String name;
     private String branch;
+    private int image;
 
     public String getName() {
         return name;
@@ -20,4 +21,13 @@ public class Model {
     public void setBranch(String branch) {
         this.branch = branch;
     }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
 }
