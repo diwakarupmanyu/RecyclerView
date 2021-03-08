@@ -1,11 +1,16 @@
 package com.example.recyclerrview;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
     Toolbar toolbar;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         recyclerView= findViewById(R.id.recyclerView);
         recyclerAdapter = new RecyclerAdapter(dataqueue());
@@ -112,4 +119,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void ClickMenu(View view)
+    {
+        opendrawer(drawerLayout);
+    }
+
+    public static void opendrawer(DrawerLayout drawerLayout)
+    {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void ClickLogout(View view)
+    {
+        logout(this);
+    }
+
+    public static void logout(final Activity activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                activity.finishAffinity();
+                System.exit(0);
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
 }
+
